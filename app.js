@@ -35,14 +35,14 @@ app.controller("GameController", ['$scope', '$timeout' ,function($scope, $timeou
     $scope.letterChosen = function() {
         console.log("Trabalhando!");
         for (var i = 0; i < $scope.corectLetterChosen.length; i++) {
-            if ($scope.incorectLetterChosen[i].toLowerCase()==$scope.input.letter.toLowerCase()) {
+            if ($scope.corectLetterChosen[i].toUpperCase()==$scope.input.letter.toUpperCase()) {
                 $scope.input.letter="";
                 return;
             }
         }
 
         for (var i=0; i < $scope.incorectLetterChosen.length; i++) {
-            if ($scope.incorectLetterChosen[i].toLowerCase()==$scope.input.letter.toLowerCase()) {
+            if ($scope.incorectLetterChosen[i].toUpperCase()==$scope.input.letter.toUpperCase()) {
                 $scope.input.letter="";
             }
         }
@@ -55,10 +55,10 @@ app.controller("GameController", ['$scope', '$timeout' ,function($scope, $timeou
             }
         }
         if (correct) {
-            $scope.corectLetterChosen.push($scope.input.letter.toLowerCase());
+            $scope.corectLetterChosen.push($scope.input.letter.toUpperCase());
         } else {
             $scope.guesses--;
-            $scope.incorectLetterChosen.push($scope.input.letter.toLowerCase());
+            $scope.incorectLetterChosen.push($scope.input.letter.toUpperCase());
         }
         $scope.input.letter = ""
         if($scope.guesses===0) {
@@ -67,7 +67,7 @@ app.controller("GameController", ['$scope', '$timeout' ,function($scope, $timeou
             }, 500)
         }
 
-        if($scope.displayWord.indexOF("*")==-1) {
+        if($scope.displayWord.indexOf("*")==-1) {
             $timeout(function() { newGame() }, 500);
         }
     }
